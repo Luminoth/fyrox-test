@@ -489,7 +489,7 @@
         ),
     ),
     scene_settings: {
-        "data/scene.rgs": (
+        "data/scenes/boot.rgs": (
             camera_settings: (
                 position: (0.0, 1.0, 0.0),
                 yaw: 0.0,
@@ -500,19 +500,12 @@
                     z_far: 128.0,
                 )),
             ),
-            node_infos: {
-                (
-                    index: 3,
-                    generation: 1,
-                ): (
-                    is_expanded: true,
-                ),
-            },
+            node_infos: {},
         ),
     },
     recent: (
         scenes: [
-            "data/scene.rgs",
+            "data/scenes/boot.rgs",
         ],
     ),
     windows: (

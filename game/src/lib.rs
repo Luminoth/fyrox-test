@@ -1,12 +1,16 @@
 //! Game project.
 use fyrox::{
-    core::pool::Handle, core::visitor::prelude::*, core::reflect::prelude::*,
+    core::pool::Handle,
+    core::reflect::prelude::*,
+    core::visitor::prelude::*,
     event::Event,
     gui::message::UiMessage,
     plugin::{Plugin, PluginContext, PluginRegistrationContext},
     scene::Scene,
 };
 use std::path::Path;
+
+pub mod hello_world;
 
 // Re-export the engine.
 pub use fyrox;
@@ -20,11 +24,16 @@ impl Plugin for Game {
     fn register(&self, _context: PluginRegistrationContext) {
         // Register your scripts here.
     }
-    
+
     fn init(&mut self, scene_path: Option<&str>, context: PluginContext) {
         context
+            .serialization_context
+            .script_constructors
+            .add::<hello_world::HelloWorld>("Hello World");
+
+        context
             .async_scene_loader
-            .request(scene_path.unwrap_or("data/scene.rgs"));
+            .request(scene_path.unwrap_or("data/scenes/boot.rgs"));
     }
 
     fn on_deinit(&mut self, _context: PluginContext) {
@@ -35,19 +44,11 @@ impl Plugin for Game {
         // Add your global update code here.
     }
 
-    fn on_os_event(
-        &mut self,
-        _event: &Event<()>,
-        _context: PluginContext,
-    ) {
+    fn on_os_event(&mut self, _event: &Event<()>, _context: PluginContext) {
         // Do something on OS event here.
     }
 
-    fn on_ui_message(
-        &mut self,
-        _context: &mut PluginContext,
-        _message: &UiMessage,
-    ) {
+    fn on_ui_message(&mut self, _context: &mut PluginContext, _message: &UiMessage) {
         // Handle UI events here.
     }
 
